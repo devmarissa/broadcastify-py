@@ -4,7 +4,7 @@ import pickle
 import os
 
 from broadcastify.utility import floor_dt, floor_dt_s
-from broadcastify.calls import Call, get_archived_calls
+from broadcastify.calls import Call, LiveCalls, get_archived_calls
 
 class Client:
     def __init__(self, **kwargs):
@@ -148,3 +148,9 @@ class Client:
         calls, st, et = get_archived_calls(call_system, talkgroup, time_block, self.config["credential_key"])
         self.__cache_archives(call_system, talkgroup, time_block, calls, st, et)
         return calls, st, et
+
+    def get_livecall_session(self, call_system: int, talkgroup: int, **kwargs) -> LiveCalls:
+        if not self.logged_in:
+            raise Exception("Not logged in")
+        
+        return LiveCalls(call_system, talkgroup, self.config["credential_key"], **kwargs)

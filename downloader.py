@@ -58,23 +58,42 @@ def time_block_and_day_to_seconds(day: str, time_block: str) -> int:
     seconds = (hours * 60 + mins) * 60
     return day_formatted.timestamp() + seconds
 
-def prompt_settings() -> tuple[int, int, int]:
+def prompt_settings_archive() -> int:
+    options = [
+        iq_day_query(),
+        iq_time_block_query()
+    ]
+    answers = inquirer.prompt(options)
+
+    day = answers["day"]
+    time_block = answers["time_block"]
+    time_block = time_block_and_day_to_seconds(day, time_block)
+    return int(time_block)
+
+def prompt_initial_settings() -> tuple[int, int]:
     options = [
         inquirer.Text("call_system", message="Enter call system ID", default=7804),
         inquirer.Text("talkgroup", message="Enter talkgroup ID", default=2451),
-        iq_day_query(),
-        iq_time_block_query()
+        inquirer.List("calls_type", message="Select call type", choices=["Live", "Archived"], default="Archived")
     ]
 
     answers = inquirer.prompt(options)
     call_system = int(answers["call_system"])
     talkgroup = int(answers["talkgroup"])
-    day = answers["day"]
-    time_block = answers["time_block"]
+    
+    return call_system, talkgroup, answers["calls_type"]
 
-    time_block = time_block_and_day_to_seconds(day, time_block)
+def handle_archives(client: broadcastify.Client, call_system, talkgroup, time_block) -> list[broadcastify.calls.Call]:
+    with client:
+        calls, start_time, end_time = client.get_archived_calls(call_system, talkgroup, time_block)
+        print(f"Start time: {format_unix_timestamp(start_time)}")
+        print(f"End time: {format_unix_timestamp(end_time)}")
+        return calls
 
-    return call_system, talkgroup, int(time_block)
+def handle_live(client: broadcastify.Client, call_system, talkgroup) -> list[broadcastify.calls.Call]:
+    with client:
+        live_calls = client.get_livecall_session(call_system, talkgroup)
+        return live_calls.init_session()
 
 def main():
     cred_key = None
@@ -93,23 +112,24 @@ def main():
     with open("broadcastify_creds.txt", "w") as f:
         f.write(client.config["credential_key"])
 
-    with client:
-        calls, start_time, end_time = client.get_archived_calls(*prompt_settings())
-        print(f"Start time: {format_unix_timestamp(start_time)}")
-        print(f"End time: {format_unix_timestamp(end_time)}")
+    call_system, talkgroup, calls_type = prompt_initial_settings()
+    if calls_type == "Archived":
+        time_block = prompt_settings_archive()
+        calls = handle_archives(client, call_system, talkgroup, time_block)
+    else:
+        calls = handle_live(client, call_system, talkgroup)
 
-        calls_dir = "calls"
-
-        for call in calls:
-            if os.path.exists(os.path.join(calls_dir, f"{call.filename}.mp3")):
-                print(f"Call {call.filename} already downloaded, skipping...")
-                continue
-            print(f"Downloading call: {call}...")
-            try:
-                download_file(call.get_media_url(), calls_dir)
-            except requests.exceptions.HTTPError as e:
-                print(f"Failed to download call {call.filename}: {e}")
-                continue
+    calls_dir = "calls"
+    for call in calls:
+        if os.path.exists(os.path.join(calls_dir, f"{call.filename}.mp3")):
+            print(f"Call {call.filename} already downloaded, skipping...")
+            continue
+        print(f"Downloading call: {call}...")
+        try:
+            download_file(call.get_media_url(), calls_dir)
+        except requests.exceptions.HTTPError as e:
+            print(f"Failed to download call {call.filename}: {e}")
+            continue
     
     print("Transcribing calls...")
     model = whisper.load_model("medium.en")

@@ -5,11 +5,11 @@ from broadcastify.calls.Call import Call
 from broadcastify.calls.call_utils import generate_session_token
 
 class LiveCalls:
-    def __init__(self, call_system, talkgroup, session_token, **kwargs) -> None:
+    def __init__(self, call_system, talkgroup, credential_key, **kwargs) -> None:
         self.config = {
             "call_system": call_system,
             "talkgroup": talkgroup,
-            "credential_key": session_token,
+            "credential_key": credential_key,
             "session_token": generate_session_token(),
             "position": datetime.datetime.now().timestamp(),
             **kwargs
