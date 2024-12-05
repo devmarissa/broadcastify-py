@@ -42,17 +42,19 @@ def iq_time_block_query() -> inquirer.List:
     options = []
     for i in range(0, 48):
         mins = i * 30
-        options.append(f"{mins // 60:02}:{mins % 60:02}")
+        options.append(f"{mins // 60:02}:{mins % 60:02} --> {(mins + 29) // 60:02}:{(mins + 29) % 60:02}")
     now = datetime.datetime.now()
     closest_time_block = floor_dt(now.timestamp(), datetime.timedelta(minutes=30))
-    default_time_block = closest_time_block.strftime("%H:%M")
+    closest_time_block_offset = (closest_time_block + datetime.timedelta(minutes=29))
+    default_time_block = closest_time_block.strftime("%H:%M") + " --> " + closest_time_block_offset.strftime("%H:%M")
 
     return inquirer.List("time_block", message="Select time block", choices=options, default=default_time_block)
 
 def time_block_and_day_to_seconds(day: str, time_block: str) -> int:
     day_formatted = datetime.datetime.strptime(day, "%Y-%m-%d")
 
-    hours, mins = map(int, time_block.split(":"))
+    time_block = time_block.split(" --> ")[0]
+    hours, mins = map(int, time_block.split(":")[0:2])
     seconds = (hours * 60 + mins) * 60
     return day_formatted.timestamp() + seconds
 
