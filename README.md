@@ -11,7 +11,7 @@ This project provides a Python-based client library to interact with Broadcastif
     2. [Fetching Archived Calls](#fetch-archived-calls)
     3. [Stream Live Calls](#stream-live-calls)
 4. [Dependencies](#dependencies)
-5. [Downloader.py Documentation](#downloader.py-documentation)
+5. [Downloader.py Documentation](#downloaderpy-documentation)
 
 Key Features:
 -------------

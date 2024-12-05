@@ -1,3 +1,4 @@
 inquirer
 requests
+pickle
 tqdm
