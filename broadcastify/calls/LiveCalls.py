@@ -18,7 +18,7 @@ class LiveCalls:
         self.hooks = {}
         self.session_initalized = False
     
-    def on(self, event: str, callback: function) -> None:
+    def on(self, event: str, callback) -> None:
         if event not in self.hooks:
             self.hooks[event] = []
         self.hooks[event].extend(callback)

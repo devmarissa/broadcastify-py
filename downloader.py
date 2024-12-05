@@ -74,21 +74,22 @@ def prompt_initial_settings() -> tuple[int, int]:
     options = [
         inquirer.Text("call_system", message="Enter call system ID", default=7804),
         inquirer.Text("talkgroup", message="Enter talkgroup ID", default=2451),
-        inquirer.List("calls_type", message="Select call type", choices=["Live", "Archived"], default="Archived")
+        inquirer.List("calls_type", message="Pull data from", choices=["Live Calls", "Archived Calls"]),
+        inquirer.Confirm("do_transcribe", message="Transcribe calls", default=False)
     ]
 
     answers = inquirer.prompt(options)
     call_system = int(answers["call_system"])
     talkgroup = int(answers["talkgroup"])
     
-    return call_system, talkgroup, answers["calls_type"]
+    return call_system, talkgroup, answers["calls_type"], answers["do_transcribe"]
 
-def handle_archives(client: broadcastify.Client, call_system, talkgroup, time_block) -> list[broadcastify.calls.Call]:
+def handle_archives(client: broadcastify.Client, call_system, talkgroup, time_block) -> tuple[list[broadcastify.calls.Call], int, int]:
     with client:
         calls, start_time, end_time = client.get_archived_calls(call_system, talkgroup, time_block)
         print(f"Start time: {format_unix_timestamp(start_time)}")
         print(f"End time: {format_unix_timestamp(end_time)}")
-        return calls
+        return calls, start_time, end_time
 
 def handle_live(client: broadcastify.Client, call_system, talkgroup) -> list[broadcastify.calls.Call]:
     with client:
@@ -112,12 +113,14 @@ def main():
     with open("broadcastify_creds.txt", "w") as f:
         f.write(client.config["credential_key"])
 
-    call_system, talkgroup, calls_type = prompt_initial_settings()
-    if calls_type == "Archived":
+    call_system, talkgroup, calls_type, do_transcribe = prompt_initial_settings()
+    if calls_type == "Archived Calls":
         time_block = prompt_settings_archive()
-        calls = handle_archives(client, call_system, talkgroup, time_block)
+        calls, start_time, end_time = handle_archives(client, call_system, talkgroup, time_block)
     else:
         calls = handle_live(client, call_system, talkgroup)
+        start_time = calls[0].start_time
+        end_time = calls[-1].start_time
 
     calls_dir = "calls"
     for call in calls:
@@ -131,6 +134,9 @@ def main():
             print(f"Failed to download call {call.filename}: {e}")
             continue
     
+    if not do_transcribe:
+        return
+
     print("Transcribing calls...")
     model = whisper.load_model("medium.en")
     
