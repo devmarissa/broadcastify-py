@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+broadcastify_creds.txt
+transcription*
+*.mp3
+.bc_cache
+*.pickle
+login.txt
