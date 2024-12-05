@@ -1,9 +1,13 @@
 import broadcastify
 import datetime
 import requests
+import inquirer
 import whisper
 import tqdm
 import os
+
+from pprint import pprint
+from broadcastify.utility import floor_dt
 
 def format_unix_timestamp(unix_timestamp: int) -> str:
     return datetime.datetime.fromtimestamp(unix_timestamp).strftime("%Y-%m-%d %H:%M:%S")
@@ -24,29 +28,51 @@ def download_file(url, directory=".", chunk_size=8192):
                 f.write(chunk)
     return local_path
 
-def select_date() -> int:
+def prompt_default(prompt, default_val):
+    val = input(f"{prompt} [{default_val}]: ")
+    if not val:
+        return default_val
+    return val
+
+def iq_day_query() -> inquirer.Text:
     today = datetime.datetime.now().strftime("%Y-%m-%d")
-    
-    date = input(f"Enter day in YYYY-MM-DD format [{today}]: ")
-    if not date:
-        date = today
+    return inquirer.Text("day", message="Enter day in YYYY-MM-DD format", default=today)
 
-    return datetime.datetime.strptime(date, "%Y-%m-%d").timestamp()
-
-def select_time_block() -> int:
+def iq_time_block_query() -> inquirer.List:
     options = []
     for i in range(0, 48):
         mins = i * 30
         options.append(f"{mins // 60:02}:{mins % 60:02}")
-    
-        
+    now = datetime.datetime.now()
+    closest_time_block = floor_dt(now.timestamp(), datetime.timedelta(minutes=30))
+    default_time_block = closest_time_block.strftime("%H:%M")
+
+    return inquirer.List("time_block", message="Select time block", choices=options, default=default_time_block)
+
+def time_block_and_day_to_seconds(day: str, time_block: str) -> int:
+    day_formatted = datetime.datetime.strptime(day, "%Y-%m-%d")
+
+    hours, mins = map(int, time_block.split(":"))
+    seconds = (hours * 60 + mins) * 60
+    return day_formatted.timestamp() + seconds
 
 def prompt_settings() -> tuple[int, int, int]:
-    call_system = int(input("Enter call system ID [7804]: "))
-    talkgroup = int(input("Enter talkgroup ID [2451]: "))
-    day = select_date()
+    options = [
+        inquirer.Text("call_system", message="Enter call system ID", default=7804),
+        inquirer.Text("talkgroup", message="Enter talkgroup ID", default=2451),
+        iq_day_query(),
+        iq_time_block_query()
+    ]
 
-    return call_system, talkgroup, time_block
+    answers = inquirer.prompt(options)
+    call_system = int(answers["call_system"])
+    talkgroup = int(answers["talkgroup"])
+    day = answers["day"]
+    time_block = answers["time_block"]
+
+    time_block = time_block_and_day_to_seconds(day, time_block)
+
+    return call_system, talkgroup, int(time_block)
 
 def main():
     cred_key = None
@@ -66,7 +92,7 @@ def main():
         f.write(client.config["credential_key"])
 
     with client:
-        calls, start_time, end_time = client.get_archived_calls(7804, 2452, 1733229000)
+        calls, start_time, end_time = client.get_archived_calls(*prompt_settings())
         print(f"Start time: {format_unix_timestamp(start_time)}")
         print(f"End time: {format_unix_timestamp(end_time)}")
 
