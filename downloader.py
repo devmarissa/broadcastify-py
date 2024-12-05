@@ -96,6 +96,14 @@ def handle_live(client: broadcastify.Client, call_system, talkgroup) -> list[bro
         live_calls = client.get_livecall_session(call_system, talkgroup)
         return live_calls.init_session()
 
+def average_logprob(transcription: dict) -> float:
+    if "segments" not in transcription or len(transcription["segments"]) == 0:
+        return
+    return sum([x["avg_logprob"] for x in transcription['segments']]) / len(transcription['segments'])
+
+def clamp(val, min_val, max_val):
+    return max(min(val, max_val), min_val)
+
 def main():
     cred_key = None
     if os.path.exists("broadcastify_creds.txt"):
@@ -144,9 +152,10 @@ def main():
         with open("transcriptions.txt", "w") as f:
             f.write(f"Transcriptions for calls from {format_unix_timestamp(start_time)} to {format_unix_timestamp(end_time)} - Talkgroup {calls[0].tg_name}\n")
 
-    with open("transcriptions.txt", "a") as f:
+    with open("transcriptions.txt", "a+") as f:
         last_call_id: int
         skip = 0
+        manual_transcriptions = []
         try:
             # Skip to last call ID if it exists
             if os.path.exists("last_call_id.txt"):
@@ -163,11 +172,38 @@ def main():
                     transcripton = model.transcribe(call_path, fp16=False, language="en")
                     f.write(f"{format_unix_timestamp(call.start_time)} (RadioID {call.unit_radioid}): {transcripton['text']}\n")
                     f.flush()
+                    try:
+                        alp = average_logprob(transcripton)
+                        if alp and alp < -0.85:
+                            manual_transcriptions.append((call_path, transcripton["text"], format_unix_timestamp(call.start_time), call.unit_radioid), )
+                    except KeyError:
+                        print(transcripton)
 
         except KeyboardInterrupt:
             print("Transcription interrupted")
-            with open("last_call_id.txt", "w") as f:
-                f.write(str(last_call_id))
+            with open("last_call_id.txt", "w") as f2:
+                f2.write(str(last_call_id))
+    
+    if manual_transcriptions:
+        with open("transcriptions.txt", "r") as f:
+            contents = f.read()
+
+        a = inquirer.prompt([inquirer.Confirm("manual_transcribe", message="Would you like to manually transcribe these calls?", default=False)])
+
+        print("Manual transcriptions reccomended:")        
+        try:
+            for call_path, transcription, start_time, unit_radioid in manual_transcriptions:
+                identifier = f"{start_time} (RadioID {unit_radioid}): {transcription}"
+                print(f"Call {call_path} - {identifier}")
+                if a["manual_transcribe"]:
+                    input_transcription = input("Enter transcription: ")
+                    new_identifier = f"{start_time} (RadioID {unit_radioid}): {input_transcription}"
+                    contents = contents.replace(identifier, new_identifier)
+        except KeyboardInterrupt:
+            print("Manual transcription interrupted")
+        with open("transcriptions.txt", "w") as f:
+            f.write(contents)
+
 
 if __name__ == "__main__":
     main()

@@ -30,4 +30,4 @@ class Call:
         return f"https://calls.broadcastify.com/{self.hash}/{self.system_id}/{self.filename}.mp3"
 
     def __repr__(self) -> str:
-        return f"Calls(tg={self.talkgroup}, dur={self.duration}s, start_time={self.start_time}, fn={self.filename}, tg_name={self.tg_name}, tg_group={self.tg_group}, sys_id={self.system_id}, unit_id={self.unit_radioid})"
+        return f"Call(tg={self.talkgroup}, dur={self.duration}s, start_time={self.start_time}, fn={self.filename}, tg_name={self.tg_name}, tg_group={self.tg_group}, sys_id={self.system_id}, unit_id={self.unit_radioid})"
