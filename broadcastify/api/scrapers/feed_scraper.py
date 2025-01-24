@@ -8,7 +8,7 @@ from typing import Dict, List, Optional, Union
 from bs4 import BeautifulSoup, Tag
 import requests
 
-from ..models import Feed, MetroFeed
+from ..models import Feed, MetroFeed, ServiceCoverage, TalkgroupCoverage
 from ..utils.rate_limiter import RateLimiter
 
 logger = logging.getLogger(__name__)
@@ -24,15 +24,12 @@ class FeedScraper:
     - /listen/feed/{feed_id}   (individual feed)
     """
     
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, session: requests.Session):
+        """Initialize feed scraper."""
+        self.session = session
         self.rate_limiter = RateLimiter()
-        self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-        })
-        self.headers = self.session.headers
+        # Track which states we've already scraped coverage for
+        self._scraped_coverage_states = set()
     
     def _get_state_id(self, state: Union[int, str]) -> Optional[int]:
         """Get state ID from name or ID."""
@@ -106,11 +103,7 @@ class FeedScraper:
             # Wait for rate limit
             self.rate_limiter.wait()
             
-            response = requests.get(
-                url,
-                cookies=self.session.cookies,
-                headers=self.headers
-            )
+            response = self.session.get(url)
             response.raise_for_status()
             
             return BeautifulSoup(response.text, 'html.parser')
@@ -211,7 +204,7 @@ class FeedScraper:
                         county_id = int(county_id)
                         county_name = option.text.strip()
                         logger.debug(f"Processing county {county_name} (ID: {county_id})")
-                        county_feeds = self.get_feeds_by_county(county_id)
+                        county_feeds = self.get_feeds_by_county(county_id, state_id)
                         for feed in county_feeds:
                             feeds_by_id[feed.id] = feed
                 except (ValueError, KeyError) as e:
@@ -245,7 +238,7 @@ class FeedScraper:
             logger.error("Could not find metro select box")
             
         return list(feeds_by_id.values())
-        
+
     def get_feeds_by_metro(self, metro_id: int) -> List[Feed]:
         """Get all feeds for a metro area."""
         url = f"https://www.broadcastify.com/listen/mid/{metro_id}"
@@ -275,8 +268,8 @@ class FeedScraper:
         logger.debug(f"Found {len(feeds)} feeds in metro area {metro_id}")
         return feeds
     
-    def get_feeds_by_county(self, county_id: int) -> List[Feed]:
-        """Get all feeds for a county."""
+    def get_feeds_by_county(self, county_id: int, state_id: int) -> List[Feed]:
+        """Get feeds for a county."""
         url = f"https://www.broadcastify.com/listen/ctid/{county_id}"
         logger.debug(f"Fetching county page from {url}")
         
@@ -286,77 +279,127 @@ class FeedScraper:
             
         feeds = []
         
-        # Find all feed rows in the main table
+        # First get feeds from the main table
         feed_table = soup.find('table', {'class': 'btable'})
-        if not feed_table:
-            logger.error(f"Could not find feed table on county page {county_id}")
-            return []
-            
-        rows = feed_table.find_all('tr')
-        logger.debug(f"Found {len(rows)} rows in feed table")
-        
-        # Skip the first row (header)
-        for row in rows[1:]:
-            feed = self._parse_feed_row(row)
-            if feed:
-                feeds.append(feed)
-        
-        logger.debug(f"Found {len(feeds)} feeds in county {county_id}")
-        
-        # Only check coverage if there are talkgroups
-        coverage_form = soup.find('form', {'action': '/calls/coverage/ctid/'})
-        if coverage_form and soup.find('div', {'class': 'talkgroup'}):
-            # Get the county ID from the hidden input
-            ctid_input = coverage_form.find('input', {'name': 'ctid'})
-            if ctid_input:
-                ctid = ctid_input.get('value')
-                # Get all service types from the select options
+        if feed_table:
+            for row in feed_table.find_all('tr')[1:]:  # Skip header row
+                feed = self._parse_feed_row(row)
+                if feed:
+                    feeds.append(feed)
+                    
+        # Check if this county has a coverage form and we haven't scraped this state yet
+        if state_id not in self._scraped_coverage_states:
+            logger.debug(f"Checking coverage for state {state_id}")
+            coverage_form = soup.find('form', {'action': '/calls/coverage/ctid/'})
+            if coverage_form:
+                logger.debug("Found coverage form")
                 service_select = coverage_form.find('select', {'name': 'tagId'})
                 if service_select:
+                    logger.debug("Found service select")
+                    # Get all service types available
                     for option in service_select.find_all('option'):
-                        tag_id = option.get('value')
-                        if tag_id:
-                            coverage_url = f"https://www.broadcastify.com/calls/coverage/ctid/?tagId={tag_id}&ctid={ctid}"
-                            logger.debug(f"Found coverage form, checking URL: {coverage_url}")
-                            coverage_feeds = self.get_feeds_from_coverage(coverage_url)
-                            logger.debug(f"Found {len(coverage_feeds)} feeds from coverage with tagId={tag_id}")
-                            feeds.extend(coverage_feeds)
-        
+                        try:
+                            tag_id = int(option['value'])
+                            service_name = option.text.strip()
+                            logger.debug(f"Processing service: {service_name} (tagId={tag_id})")
+                            
+                            coverage_url = f"https://www.broadcastify.com/calls/coverage/ctid/?tagId={tag_id}&ctid={county_id}"
+                            logger.debug(f"Fetching coverage from: {coverage_url}")
+                            
+                            coverage_services = self.get_feeds_from_coverage(coverage_url)
+                            logger.debug(f"Found {len(coverage_services)} services from coverage")
+                            
+                            # Here you can process the coverage_services as needed
+                            # For now, let's convert them to Feed objects
+                            for service in coverage_services:
+                                for tg in service.talkgroups:
+                                    feed = Feed(
+                                        id=tg.id,
+                                        name=tg.display,
+                                        description=tg.description,
+                                        location=tg.system,
+                                        status=tg.last_seen,
+                                        listeners=0
+                                    )
+                                    feeds.append(feed)
+                                    
+                        except (ValueError, KeyError) as e:
+                            logger.error(f"Error processing service option: {e}")
+                            continue
+                            
+                    # Mark this state as scraped for coverage
+                    self._scraped_coverage_states.add(state_id)
+                    
         return feeds
     
-    def get_feeds_from_coverage(self, coverage_url: str) -> List[Feed]:
+    def get_feeds_from_coverage(self, url: str) -> List[ServiceCoverage]:
         """Get feeds from a coverage page."""
-        logger.debug(f"Checking coverage page: {coverage_url}")
+        logger.debug(f"Fetching coverage page from {url}")
         
-        soup = self._make_request(coverage_url)
+        soup = self._make_request(url)
         if not soup:
             return []
             
-        feeds = []
-        # Look for talkgroup links which contain feed information
-        content_div = soup.find('div', {'class': 'content'})
-        if not content_div:
-            return []
-            
-        for link in content_div.find_all('a'):
-            href = link.get('href', '')
-            if '/calls/tg/' in href:
-                match = re.search(r'/tg/(\d+)/(\d+)', href)
-                if match:
-                    system_id = int(match.group(1))
-                    talkgroup_id = int(match.group(2))
-                    # Create a feed object from the talkgroup info
-                    feed = Feed(
-                        id=talkgroup_id,  # Use talkgroup ID as feed ID
-                        name=link.text.strip(),
-                        description=f"Talkgroup {talkgroup_id} in System {system_id}",
-                        location="",  # County name could be added here
-                        status="Unknown",
-                        listeners=0
-                    )
-                    feeds.append(feed)
+        services = []
         
-        return feeds
+        # Find all service cards
+        cards = soup.find_all('div', {'class': 'card-frame'})
+        for card in cards:
+            # Get service name from header
+            header = card.find('h6', {'class': 'card-header'})
+            if not header:
+                continue
+            service_name = header.text.strip()
+            
+            # Get tag ID from URL
+            tag_id_match = re.search(r'tagId=(\d+)', url)
+            if not tag_id_match:
+                continue
+            tag_id = int(tag_id_match.group(1))
+            
+            # Find talkgroup table
+            table = card.find('table', {'class': 'groupsTable'})
+            if not table:
+                continue
+                
+            talkgroups = []
+            
+            # Process each row
+            for row in table.find_all('tr')[1:]:  # Skip header row
+                try:
+                    cells = row.find_all('td')
+                    if len(cells) < 5:
+                        continue
+                        
+                    # Get talkgroup ID from first cell
+                    tg_link = cells[0].find('a')
+                    if not tg_link:
+                        continue
+                    tg_value = tg_link.get('data-value', '')
+                    if not tg_value or '-' not in tg_value:
+                        continue
+                    system_id, tg_id = tg_value.split('-')
+                    
+                    talkgroups.append(TalkgroupCoverage(
+                        id=int(tg_id),
+                        system_id=int(system_id),
+                        display=cells[1].text.strip(),
+                        description=cells[2].text.strip(),
+                        system=cells[3].text.strip(),
+                        last_seen=cells[4].text.strip()
+                    ))
+                except (ValueError, IndexError) as e:
+                    logger.error(f"Error parsing talkgroup row: {e}")
+                    continue
+            
+            if talkgroups:
+                services.append(ServiceCoverage(
+                    tag_id=tag_id,
+                    name=service_name,
+                    talkgroups=talkgroups
+                ))
+        
+        return services
     
     def get_feed(self, feed_id: int) -> Optional[Feed]:
         """Get detailed information about a specific feed."""

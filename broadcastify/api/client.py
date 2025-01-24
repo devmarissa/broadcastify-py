@@ -36,7 +36,7 @@ class BroadcastifyClient:
         
         # Initialize scrapers with this client instance
         self.call_scraper = CallScraper(self)
-        self.feed_scraper = FeedScraper(self)
+        self.feed_scraper = FeedScraper(self._session)
         self.system_scraper = SystemScraper(self)
         
         self._credential_key = None
