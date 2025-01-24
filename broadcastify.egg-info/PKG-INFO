@@ -1,0 +1,11 @@
+Metadata-Version: 2.2
+Name: broadcastify
+Version: 0.1.0
+Requires-Dist: requests>=2.25.1
+Requires-Dist: beautifulsoup4>=4.9.3
+Requires-Dist: click>=8.0.0
+Requires-Dist: rich>=10.0.0
+Requires-Dist: numpy<2
+Requires-Dist: torch
+Requires-Dist: openai-whisper==20231117
+Dynamic: requires-dist

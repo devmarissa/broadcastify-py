@@ -1,0 +1,1029 @@
+[
+  {
+    "id": 35918,
+    "name": "Baker County 911",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 500,
+    "name": "Baker County Sheriff and Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 13
+  },
+  {
+    "id": 12637,
+    "name": "Benton County Public Safety",
+    "description": "Benton County Sheriff, Corvallis and Philomath Police and Fire, METCOM",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 20
+  },
+  {
+    "id": 25475,
+    "name": "W7PRA Peak Radio Association",
+    "description": "",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 1,
+    "metro_area_id": 44
+  },
+  {
+    "id": 36509,
+    "name": "Clackamas County Fire and EMS",
+    "description": "Official feed of Clackamas Fire Dist. #1   This feed is now on P25 digital.  Feed includes Dispatch, OPS 24, 25, 26, 27,28, CLACK A, CLACK B, FIRE TRAINING 1 & 2. Also  VHF backup Frequencies. Not all of these talk groups are active at the same time.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 26,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37071,
+    "name": "Clackamas County Fire Channel OPS 22",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Offline",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37072,
+    "name": "Clackamas County Fire Channel OPS 23",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Offline",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37073,
+    "name": "Clackamas County Fire Channel OPS 24",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37074,
+    "name": "Clackamas County Fire Channel OPS 25",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37075,
+    "name": "Clackamas County Fire Channel OPS 26",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37076,
+    "name": "Clackamas County Fire Channel OPS 27",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37077,
+    "name": "Clackamas County Fire Channel OPS 28",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Offline",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37066,
+    "name": "Clackamas County Fire Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 3,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37064,
+    "name": "Clackamas County Law 1",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 9,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37065,
+    "name": "Clackamas County Law 2",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 9689,
+    "name": "Lake Oswego Fire",
+    "description": "LoCom Dispatch, Ops 22, Ops 23 and Clack A. This feed is programmed for the new digital P25 radio system.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37067,
+    "name": "Lake Oswego Fire Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 31473,
+    "name": "Clatsop County Police, Fire, EMS, Marine and Aircraft",
+    "description": "Includes South Clatsop County Police, Fire, EMS.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 19
+  },
+  {
+    "id": 4241,
+    "name": "Clatsop County Public Safety",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 4
+  },
+  {
+    "id": 43504,
+    "name": "North Clatsop County Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 30541,
+    "name": "Cowlitz County Public Safety, Columbia County Law Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 71,
+    "metro_area_id": 44
+  },
+  {
+    "id": 28236,
+    "name": "St. Helens Police and Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 16,
+    "metro_area_id": 44
+  },
+  {
+    "id": 40402,
+    "name": "Charleston Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 24469,
+    "name": "Lakeside Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 31190,
+    "name": "Millington Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 38476,
+    "name": "North Bend Police and Fire",
+    "description": "Coos County, Oregon",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 4654,
+    "name": "Deschutes, Crook, Jefferson counties Fire / EMS",
+    "description": "Listening to Oregon State Radio Project P25 system.  Bend Fire, Sisters - Camp Sherman Fire, Cloverdale Fire, Crooked River Ranch, Crook County Fire, Redmond Fire, Lapine & Sunriver Fire, Jefferson County Fire, Airlink, and Lifeflight. Also has USFS, ODF",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 19
+  },
+  {
+    "id": 43492,
+    "name": "Cedar Valley North Bank Rural",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 34019,
+    "name": "Gold Beach Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 40536,
+    "name": "Ophir Rural Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 27261,
+    "name": "Bend Police Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 27259,
+    "name": "Deschutes County Police Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 7
+  },
+  {
+    "id": 26622,
+    "name": "North West Hub Allstar Node 2295",
+    "description": "",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 27260,
+    "name": "Redmond Police Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 6
+  },
+  {
+    "id": 43824,
+    "name": "DDB Repeater Node 57540",
+    "description": "",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 42407,
+    "name": "DFPA Primary Dispatch & Douglas County Fire Dispatch",
+    "description": "This is not a scanning feed. The audio output is in stereo. All frequencies are outputted simultaneously - To be used with headphones/earbuds. DFPA on left ear, fire dispatch on right ear. Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 42279,
+    "name": "Douglas County Disaster Event",
+    "description": "This feed will cover fire & other disaster events in Douglas County. This feed is stereo and also not a scanning feed. What does this mean? All audio will be streamed simultaneously so that no audio is missed. This feed will assist Watch Duty reporting in",
+    "location": "Disaster Event",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 41744,
+    "name": "Douglas County Fire Dispatch",
+    "description": "Douglas County Fire Dispatch Dedicated Stream. Direct non-delayed link in the channel notes. Thank you first responders for your service!! Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 40833,
+    "name": "Douglas County Public Safety",
+    "description": "Official Douglas County Emergency and Public Safety Communications. The clearest audio feed in the county! Douglas County Sheriff, Oregon State Police, Fire Dispatch, DFPA, ODOT, & Search and Rescue. Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 55
+  },
+  {
+    "id": 42139,
+    "name": "Douglas County Sheriff - Law 1",
+    "description": "Dedicated feed for the Douglas County, Oregon Sheriff Law 1 Station. Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 3
+  },
+  {
+    "id": 42138,
+    "name": "Douglas County Sheriff - Law 2",
+    "description": "Dedicated feed for the Douglas County, Oregon Sheriff Law 2 (secondary) Station. Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 41248,
+    "name": "Douglas Forest Protective Association (DFPA)",
+    "description": "Dedicated feed to the Douglas Forest Protective Association (DFPA). Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 33107,
+    "name": "Gardiner Rural Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 42136,
+    "name": "Oregon Department of Transportation - District 7 (South Douglas)",
+    "description": "Dedicated feed for the Oregon Department of Transportation - District 7 Station (South Douglas - Shady/Canyonville Maintenance). Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 42137,
+    "name": "Oregon State Police - Roseburg Station",
+    "description": "Dedicated feed for the Oregon State Police - Roseburg Station. Provided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 19114,
+    "name": "Oregon State Police and DOT, Douglas County Sheriff, Fire / SAR",
+    "description": "Douglas County Sheriff, Douglas County Fire, Douglas County Search & Rescue, Oregon State Police, Oregon Department of Transportation and Department of Forestry!",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 11
+  },
+  {
+    "id": 43350,
+    "name": "Roseburg Area NOAA Weather Radio WXL98",
+    "description": "Dedicated feed for the Roseburg and Umpqua Basin Weather. Provided by The Roseburg Receiver.",
+    "location": "Other",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 42112,
+    "name": "Roseburg Regional Airport Unicom/CTAF",
+    "description": "Dedicated Feed for the Roseburg Regional Airport & Seattle Center. Provided by The Roseburg Receiver.",
+    "location": "Aviation",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 43057,
+    "name": "US Forest Service - Umpqua National Forest",
+    "description": "Dedicated feed for the US Forest Service - Umpqua National Forest. This feed is in stereo. This means that all channels are broadcasted simultaneously. For separated feeds, please go to OpenMhz.\r\nProvided by The Roseburg Receiver.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 34649,
+    "name": "Harney County Public Safety",
+    "description": "NEW DIGITAL FEED: Harney County Sheriff , Burns PD, Hines PD, Bureau of Indian Affairs (Tribal Police), (Priority)\r\n\r\nOregon State Police Dispatch Channel\r\n\r\nBurns Fire, Hines Fire, Burns Paiute Tribal Fire  Dispatch Channel\r\n\r\nHarney EMS - Dispatch Chann",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 14
+  },
+  {
+    "id": 42041,
+    "name": "Hood River Police-Fire-ODOT",
+    "description": "Hood River County Police-Fire-ODOT",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 41299,
+    "name": "Applegate Valley Fire District",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 7
+  },
+  {
+    "id": 32827,
+    "name": "Jackson County - North County Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 31
+  },
+  {
+    "id": 40841,
+    "name": "Jackson County Fire",
+    "description": "Fire related scanner feed including ODF and JCSO Secondary, MPD locked out unless active event.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 6
+  },
+  {
+    "id": 44231,
+    "name": "Jackson County Public Safety",
+    "description": "Jackson County Oregon. JCSO Primary, Oregon State Police Primary, Medford Police Dispatch, Medford Fire Dispatch.\r\nIncludes Fire Districts. N. County / S. County.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 15
+  },
+  {
+    "id": 34832,
+    "name": "Medford Fire Department",
+    "description": "Dispatch & Tactical Channels Scanned",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 14
+  },
+  {
+    "id": 43378,
+    "name": "Jefferson County 444.425 Mhz Repeater",
+    "description": "",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 26124,
+    "name": "Jefferson County Fire District 1 Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 44402,
+    "name": "Grants Pass Fire Rescue",
+    "description": "This is the primary/dispatch frequency for Grants Pass Fire Rescue.  Units will switch to tactical or other agency frequencies for complex or mutual aid incidents.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 42763,
+    "name": "Illinois Valley Fire Protection District",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 41954,
+    "name": "Josephine County Fire Agencies",
+    "description": "This feed covers fire frequencies in Josephine County and is provided by Watch Duty to support reporting in this area. This is not a scanning feed, the audio output is in stereo, and all frequencies are output simultaneously so that no audio is missed.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 32269,
+    "name": "KJ7VZY Amateur Radio Allstar Node",
+    "description": "",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 41956,
+    "name": "ODF Grants Pass Unit",
+    "description": "This feed covers fire frequencies of ODF in the Grants Pass Unit and is provided by Watch Duty to support reporting in this area. This is not a scanning feed; the audio output is in stereo, and all frequencies are output simultaneously so that no audio is",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 42620,
+    "name": "Oregon Department of Forestry (ODF) Fire -  Southwest Oregon",
+    "description": "This feed covers fire frequencies of ODF in Southwest Oregon and is provided by Watch Duty to support reporting in this area. Frequencies may be added or removed with or without notice as extended incidents evolve throughout the unit, county, or forest. T",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 44315,
+    "name": "Rural Metro Fire Department Dispatch",
+    "description": "This is the primary/dispatch frequency for Rural Metro Fire Department (Josephine County). Units will switch to tactical or other agency frequencies for complex or mutual aid incidents.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 39538,
+    "name": "Williams RFPD",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 43123,
+    "name": "Chemult Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 43835,
+    "name": "Klamath County Fire/Winema Forest Fire/National Forest Fire",
+    "description": "Scanner location is in Beatty, Oregon Sometimes the signal is weak due to outside of the area of transmitters in Klamath Falls\r\nForestry Fire and Info is a good signal.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 23474,
+    "name": "Klamath County Public Safety",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 48
+  },
+  {
+    "id": 43836,
+    "name": "Klamath County Sheriff/Oregon State Police Dispatch",
+    "description": "Scanner location is in Beatty, Oregon",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 4
+  },
+  {
+    "id": 42359,
+    "name": "Lake County Public Safety & Forestry",
+    "description": "Lakeview Fire, EMS, Sheriff, State Police & Lake County Road Department. Modoc County, CA., as events dictate.\r\n\r\nBLM, USFS & ODF during fire season.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 4
+  },
+  {
+    "id": 39528,
+    "name": "Lakeview Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 41638,
+    "name": "Eugene Area Railroad",
+    "description": "Eugene Area Railroad\r\n\r\nCovers the UP in the Eugene area. Also includes the following in the Eugene area: CORP, Coos Bay Rail Line, and Portland & Western. See the Notes page for channel listing.\r\n\r\nLocation: Lane County, Oregon, United States",
+    "location": "Rail",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 31041,
+    "name": "Lane County Fire and EMS, Oregon State Police / ODOT",
+    "description": "Monitors all Firecom dispatch channels, including Lane Rural and South Lane. Also receives OSP, & ODOT. Scans the State Radio Project, and the Lane County interop system. ---Does NOT monitor forest fire operations, please monitor forestry feed for updates",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 29
+  },
+  {
+    "id": 38630,
+    "name": "Lane Fire Authority",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 24081,
+    "name": "McKenzie Fire and Rescue",
+    "description": "Monitoring FireEast, East 2, Lane 5, East 8, and McKenzie Net. This covers an area From the East side of I5 to The Upper McKenzie River area (Hwy 20 / Hwy 242).",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 32798,
+    "name": "Oregon Department of Forestry / Umpqua and Willamette National Forest",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 41805,
+    "name": "Pleasant Hill Goshen Fire & Rescue",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 38373,
+    "name": "Toledo Fire West & East, Lincoln County Fire 1 & 2, and PWA",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 38372,
+    "name": "Albany Police",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 8
+  },
+  {
+    "id": 44330,
+    "name": "Linn and South Marion County Fire",
+    "description": "Linn County and South Marion County fire frequencies. Non trunked VHF dispatch and working frequencies.\r\nAgencies are Linn County dispatch, South Marion County dispatch,  Albany, Sweet Home, Lebanon, Harrisburg, Halsey-Shed, Tangent, Scio, Jefferson, Stay",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 44043,
+    "name": "Linn County Fire",
+    "description": "New Linn County Fire Simulcast Channels Covering Most all of the Linn county Fire Agency's including but not Limited to Albany Fire, Scio Fire, Lebanon Fire, Sweet Home, and more",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 4
+  },
+  {
+    "id": 42346,
+    "name": "AH6LE Repeater System",
+    "description": "A linked repeater system in the Willamette Valley of Oregon. \r\nAllstar is used to link the various repeater sites to the main Hub in Butteville, OR. Linking is done on 5.8 gHz using the AREDN Mesh Network.",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 42819,
+    "name": "Keizer Police Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1
+  },
+  {
+    "id": 41406,
+    "name": "Marion County Fire District #1",
+    "description": "Valley Dispatch, OPS51, OPS52, OPS53, OPS54",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 3
+  },
+  {
+    "id": 35408,
+    "name": "Marion County Fire South 1-4",
+    "description": "South 1: 154.4150MHz, South 2: 154.0100MHz, South 3: 154.2500MHz , South 4: 154.295MHz\r\n\r\nCoverage Portables: Lyons, Mill City, Stayton, Sublimity, Aumsville\r\nCoverage Mobiles: Lyons, Mill City, Gates, Stayton, Sublimity, Aumsville, Turner, and Jefferson",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 9
+  },
+  {
+    "id": 5465,
+    "name": "Marion County METCOM North-1 Fire",
+    "description": "METCOM Fire Dispatch and ops for Silverton, Mount Angel, Drakes Crossing, Monitor,  woodburn, Hubbard, St Paul , Fire Districts. Scans N1(P), N6 & N7.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 13
+  },
+  {
+    "id": 17728,
+    "name": "Marion County Sheriff Dispatch",
+    "description": "Marion County Sheriff dispatch. Marion County, Oregon.\r\nScans between the primary dispatch channel (154.74 CH 1) and the backup channel (154.89 CH 3).",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 9
+  },
+  {
+    "id": 20083,
+    "name": "Salem Fire",
+    "description": "City of Salem Fire Department in Salem, Oregon.\r\nSMF Dispatch TalkGroup on the City of Salem P25 trunking system.\r\nSMF Ops 3 TalkGroup on the City of Salem P25 trunking system.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 23
+  },
+  {
+    "id": 38828,
+    "name": "Salem Municipal Airport - McNary Field (KSLE)",
+    "description": "",
+    "location": "Aviation",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 31740,
+    "name": "Salem Police Dispatch",
+    "description": "City of Salem Police Department in Salem, Oregon.\r\n\r\nSMP Dispatch 1 TalkGroup on the City of Salem P25 trunking system.\r\nThis encrypted talkgroup is rebroadcast with a 15 minute delay.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 48
+  },
+  {
+    "id": 42350,
+    "name": "WA7ABU 145.29 Ham Radio Repeater",
+    "description": "A very active radio feed with nets three times a day:\r\n10 AM PST(PDT) Tech Nets each weekday for questions about the hobby\r\n12 noon check in to test your radio, get known locally\r\n7 PM weekdays for other informative nets\r\n7 PM Saturdays - \"the Ham Shoppin",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 35614,
+    "name": "Oregon State Police and Oregon State Agencies",
+    "description": "Feed currently consists of OSP and ODOT, but may change to include other city/state agencies during relevant incidents.  If you find that you would prefer to hear only OSP or only ODOT during standard feed times, message me and I'll consider a consensus.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 6,
+    "metro_area_id": 44
+  },
+  {
+    "id": 20766,
+    "name": "Portland Area Fire and Rescue",
+    "description": "Portland Area Fire Rescue Dispatch, OPS-1 thru OPS-9, AV (Airport) Fire",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 90,
+    "metro_area_id": 44
+  },
+  {
+    "id": 32048,
+    "name": "Portland State University Police and Portland Police Service Desk",
+    "description": "In lieu of PPB Central going encrypted, this feed now carries PPB Service Desk, with PSU Police taking priority in the event of simultaneous transmissions.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 4,
+    "metro_area_id": 44
+  },
+  {
+    "id": 42736,
+    "name": "Dallas and Polk County Fire Dispatch",
+    "description": "Polk County Fire District and Dallas Fire. Scans Dispatch (Central 1), and working channel (West 2).",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 3
+  },
+  {
+    "id": 29985,
+    "name": "Polk County Sheriff and Dallas Police",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 7
+  },
+  {
+    "id": 16984,
+    "name": "Tillamook County Police, Fire, EMS, EM, and Public Works",
+    "description": "Local scanner for Tillamook County",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 23
+  },
+  {
+    "id": 20012,
+    "name": "Milton Freewater Fire and EMS",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 33903,
+    "name": "Umatilla County Public Safety",
+    "description": "Umatilla County P25 trunked system.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 14
+  },
+  {
+    "id": 8015,
+    "name": "Walla Walla Valley Law, Fire and EMS",
+    "description": "Feed is in Stereo. LE on Left & Fire/EMS on the Right.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 13
+  },
+  {
+    "id": 23459,
+    "name": "Elgin Rural Fire Protection District",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 4
+  },
+  {
+    "id": 41049,
+    "name": "Joseph Fire",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 41784,
+    "name": "Pendleton Oregon NOAA Weather Radio (WZ2559)",
+    "description": "Covering Wallowa County & NE Oregon.\r\nSee feed notes for details and links.",
+    "location": "Other",
+    "status": "Online",
+    "listeners": 2
+  },
+  {
+    "id": 36257,
+    "name": "Wallowa County Public Safety",
+    "description": "Joseph, Enterprise, and Wallowa Oregon Police, Fire, Medic, Forestry and NE Oregon road department communications. \r\nSee feed notes for details and radio codes used.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 12
+  },
+  {
+    "id": 35717,
+    "name": "The Dalles Police Dispatch, Oregon State Police Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 5
+  },
+  {
+    "id": 36064,
+    "name": "Wasco County (South) Fire and Ambulance Dispatch",
+    "description": "South Wasco County Fire and Ambulance dispatch via Fire South. May include Dufur, Tygh Valley, Maupin, Juniper Flatts and Wamic departments along with requests for mutual aid. ~10s delay vs. live feed.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0
+  },
+  {
+    "id": 43631,
+    "name": "Wasco County North Fire & EMS Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Offline",
+    "listeners": 0
+  },
+  {
+    "id": 9766,
+    "name": "Yamhill County Fire",
+    "description": "Yamhill County Fire, Ops 1, Ops 2 MAC Fire and MAC Ops",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 7,
+    "metro_area_id": 44
+  },
+  {
+    "id": 35988,
+    "name": "Yamhill County Sheriff",
+    "description": "County wide with all communities except McMinnville, Dundee and Newberg.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 6,
+    "metro_area_id": 44
+  },
+  {
+    "id": 2236,
+    "name": "Clark County Public Safety - CRESA Digital",
+    "description": "CRESA 911 Trunking system: Clark County Fire,  Clark County EMS, AMR, and Washington State Patrol.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 40,
+    "metro_area_id": 44
+  },
+  {
+    "id": 44297,
+    "name": "Oregon Tualatin Amateur Radio Club Repeater W7OTV",
+    "description": "",
+    "location": "Amateur Radio",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 43438,
+    "name": "Portland and Western Railroad in Hillsboro",
+    "description": "",
+    "location": "Rail",
+    "status": "Offline",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 43048,
+    "name": "Skamania County Fire and Rescue",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1,
+    "metro_area_id": 44
+  },
+  {
+    "id": 1102,
+    "name": "Washington County Fire and EMS",
+    "description": "West of Portland. Agencies include Banks, Cornelius, Forest Grove, Gaston, Hillsboro, TVF&R, and AMR. TVF&R serves Beaverton, Durham, King City, Midway, Newberg, North Plains, Rivergrove, Sherwood, Tigard, Tualatin, West Linn, and Wilsonville.",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 67,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37080,
+    "name": "Washington County Fire Channel 2",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37081,
+    "name": "Washington County Fire Channel 3",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37082,
+    "name": "Washington County Fire Channel 4",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37083,
+    "name": "Washington County Fire Channel 5",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37084,
+    "name": "Washington County Fire Channel 6",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 0,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37086,
+    "name": "Washington County Fire Dispatch",
+    "description": "",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1,
+    "metro_area_id": 44
+  },
+  {
+    "id": 23100,
+    "name": "Washington County Fire Dispatch",
+    "description": "Washington County Fire \r\nTG 34250",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 1,
+    "metro_area_id": 44
+  },
+  {
+    "id": 42440,
+    "name": "Washington County Sheriff Ch-2",
+    "description": "Washington County Oregon Sheriff Channel 2",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 4,
+    "metro_area_id": 44
+  },
+  {
+    "id": 37087,
+    "name": "Washington County Sheriff Dispatch",
+    "description": "Washington County Oregon Sheriff Channel 1",
+    "location": "Public Safety",
+    "status": "Online",
+    "listeners": 9,
+    "metro_area_id": 44
+  }
+]

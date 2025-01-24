@@ -1,4 +1,11 @@
 inquirer
 requests
-pickle
 tqdm
+numpy<2
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+openai-whisper==20231117
+beautifulsoup4>=4.9.3
+click>=8.0.0
+rich>=10.0.0
+requests>=2.25.1

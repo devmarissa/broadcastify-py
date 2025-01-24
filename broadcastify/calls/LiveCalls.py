@@ -33,8 +33,37 @@ class LiveCalls:
         cookies = {
             "bcfyuser1": self.config["credential_key"]
         }
-        with requests.post("https://www.broadcastify.com/calls/apis/live-calls", data=payload, cookies=cookies) as response:
+        headers = {
+            "User-Agent": "Mozilla/5.0",
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+            "Accept-Language": "en-US,en;q=0.5",
+            "X-Requested-With": "XMLHttpRequest",
+            "Origin": "https://www.broadcastify.com",
+            "Referer": f"https://www.broadcastify.com/calls/tg/{self.config['call_system']}/{self.config['talkgroup']}",
+        }
+        print(f"Making request with payload: {payload}")
+        print(f"Using credential key: {self.config['credential_key']}")
+        
+        # First, try to load the talkgroup page to get any necessary tokens
+        with requests.get(
+            f"https://www.broadcastify.com/calls/tg/{self.config['call_system']}/{self.config['talkgroup']}", 
+            cookies=cookies,
+            headers=headers
+        ) as response:
             if not response.ok:
+                print(f"Failed to load talkgroup page: {response.status_code}")
+                print(response.text)
+        
+        # Now make the actual API request
+        with requests.post(
+            f"https://www.broadcastify.com/calls/ajax/update", 
+            data=payload, 
+            cookies=cookies,
+            headers=headers
+        ) as response:
+            if not response.ok:
+                print(f"Response headers: {response.headers}")
+                print(f"Response content: {response.text}")
                 raise Exception(f"Failed to get live calls - server error {response.status_code}")
             return response.json()
     
@@ -43,21 +72,25 @@ class LiveCalls:
             raise Exception("Session not initialized")
 
         payload = {
-            "groups[]": f"{self.config['call_system']}-{self.config['talkgroup']}",
-            "pos": self.config["position"],
-            "doInit": init,
-            "systemId": 0,
-            "sid": 0,
-            "sessionKey": self.config["session_token"]
+            "systemId": self.config['call_system'],
+            "talkgroupId": self.config['talkgroup'],
+            "lastUpdate": str(int(self.config["position"])),
+            "mode": "gettalkgroups" if init == 1 else "getupdate"
         }
+        print(f"Polling with config: {self.config}")
         res = self.__make_livecall_request(payload)
-        delta_calls = [Call(**call) for call in res["calls"]]
-        self.calls.extend(delta_calls)
-        self._invoke("update", delta_calls)
-        last_call = delta_calls[-1]
-        self.config["position"] = last_call.start_time + 1
-        return delta_calls
-    
+        print(f"Received response: {res}")
+        if "calls" in res:
+            delta_calls = [Call(**call) for call in res["calls"]]
+            print(f"Extracted {len(delta_calls)} calls")
+            self.calls.extend(delta_calls)
+            self._invoke("update", delta_calls)
+            if delta_calls:
+                last_call = delta_calls[-1]
+                if hasattr(last_call, 'start_time'):
+                    self.config["position"] = last_call.start_time
+        return self.calls
+
     def init_session(self) -> list[Call]:
         calls = self.__invoke_poll(init=1)
         self.session_initalized = True

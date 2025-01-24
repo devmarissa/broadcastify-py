@@ -1,0 +1,7 @@
+requests>=2.25.1
+beautifulsoup4>=4.9.3
+click>=8.0.0
+rich>=10.0.0
+numpy<2
+torch
+openai-whisper==20231117

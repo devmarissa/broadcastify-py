@@ -1,0 +1,2 @@
+[console_scripts]
+state-scraper = scripts.state_scraper:main
